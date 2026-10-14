@@ -87,8 +87,6 @@ h1,h2,h3{margin:0}
 .c3{left:3%;bottom:6%;width:clamp(140px,30vw,300px);height:46px;background:var(--blue);border:4px solid #111;opacity:.9}
 .c4{left:32%;top:15%;width:70px;height:70px;background:var(--yellow);clip-path:polygon(0 8%,100% 0,92% 100%,6% 90%);border:4px solid #111}
 
-
-
 /* marquee */
 .mq{overflow:hidden;background:#111;color:var(--yellow);padding:.7rem 0;transform:rotate(-1.5deg);margin:2rem -2%;border-block:4px solid var(--pink);position:relative;z-index:3}
 .mq.r{background:var(--pink);color:#111;transform:rotate(1.2deg);border-color:#111}
@@ -107,6 +105,121 @@ h1,h2,h3{margin:0}
 @keyframes drop{0%{opacity:0;transform:translateY(-160px) rotate(calc(var(--r)*5))}55%{opacity:1;transform:translateY(10px) rotate(var(--r))}75%{transform:translateY(-14px) rotate(var(--r))}100%{opacity:1;transform:translateY(0) rotate(var(--r))}}
 .pit b{display:block;font:1rem 'Permanent Marker',cursive;margin-bottom:.2rem}
 mark{color:inherit;white-space:nowrap;padding:0 .15em;background:linear-gradient(var(--yellow),var(--yellow)) no-repeat 0 0/0% 100%;-webkit-box-decoration-break:clone;box-decoration-break:clone;transition:background-size .9s .3s cubic-bezier(.6,0,.2,1),color .3s .6s}
+.seen mark,mark.seen{color:#111;background-size:100% 100%}
+
+.slot{margin-top:2.5rem;display:flex;flex-wrap:wrap;gap:1rem;align-items:center}
+.win{height:3.4rem;width:min(100%,520px);overflow:hidden;border:4px solid #111;background:#fff;box-shadow:6px 6px 0 #111;--h:3.4rem}
+.strip{will-change:transform}
+.strip div{height:var(--h);display:flex;align-items:center;padding:0 1rem;font:clamp(.8rem,3.6vw,1.15rem)/1.1 'Permanent Marker',cursive;white-space:normal;color:#111}
+.btn{border:4px solid #111;background:var(--pink);color:#111;padding:.5rem 1.2rem;font:1.2rem 'Bowlby One',Impact,sans-serif;box-shadow:5px 5px 0 #111;transform:rotate(-2deg)}
+.btn:active{transform:translate(3px,3px) rotate(-2deg);box-shadow:2px 2px 0 #111}
+
+/* books */
+#livros{--c:var(--blue);background:var(--c);color:#fff}
+#livros .h2{color:var(--yellow)}
+.shelf{list-style:none;margin:0;padding:0 0 28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:2.4rem 1rem;justify-items:center;perspective:1000px;position:relative}
+.shelf li{width:150px;height:250px;position:relative}.shelf li:has(.bk.on){z-index:6}
+.bk{width:150px;height:250px;padding:0;border:0;background:none;position:relative;transform-style:preserve-3d;transition:transform .7s cubic-bezier(.3,1.4,.5,1)}
+.shelf li::after{content:"";position:absolute;left:-14px;right:-14px;bottom:-16px;height:14px;background:#111;box-shadow:0 8px 0 var(--pink)}
+.bk .in{position:absolute;inset:0;background:var(--card);color:var(--fg);border:3px solid #111;padding:.6rem;font-size:.7rem;line-height:1.3;text-align:left;overflow:auto}
+.bk .cv{position:absolute;inset:0;transform-origin:left center;transition:transform .9s cubic-bezier(.5,0,.2,1);backface-visibility:hidden;overflow:hidden;background:var(--c);color:var(--t,#111);border:3px solid #111;padding:.7rem;display:flex;flex-direction:column;justify-content:space-between;text-align:left;box-shadow:inset 10px 0 0 rgba(0,0,0,.25)}
+.bk .cv b{font:400 .95rem/1.1 'Bowlby One',Impact,sans-serif;overflow-wrap:anywhere}
+.bk.on{transform:translateY(-18px) translateZ(40px) rotateY(-8deg) scale(1.05);z-index:5}
+.bk.on .cv{transform:rotateY(-150deg)}
+@media(hover:hover){.bk:not(.on):hover{transform:translateY(-12px) rotateY(-8deg)}}
+
+/* blog */
+#blog{--c:var(--bg);background:var(--c);color:var(--fg)}
+.posts{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.6rem;grid-auto-flow:dense}
+.post{text-align:left;border:3px solid #111;padding:1.3rem;background:var(--card);color:var(--fg);box-shadow:7px 7px 0 var(--pink);transform:rotate(var(--r));transition:transform .3s cubic-bezier(.3,1.6,.5,1);clip-path:polygon(0 2%,98% 0,100% 97%,3% 100%)}
+.post:hover,.post:focus-visible{transform:rotate(0) scale(1.04)}
+.post h3{font:1.45rem/1.1 'Bowlby One',Impact,sans-serif;margin:.6rem 0;overflow-wrap:anywhere}
+.post p{margin:0;font-size:.95rem}
+@media(min-width:760px){.post:nth-child(1){grid-column:span 2;grid-row:span 2}.post:nth-child(4){grid-column:span 2}.post:nth-child(1) h3{font-size:2.3rem}}
+.cat{display:inline-block;background:var(--yellow);color:#111;border:2px solid #111;font:1rem 'Permanent Marker',cursive;padding:0 .5rem;transform:rotate(-2deg)}
+.k1{background:var(--lime)}.k2{background:#ff9ec7}.k3{background:#9fd8ff}
+#modal{position:fixed;inset:0;z-index:85;display:grid;place-items:center;padding:1rem;background:rgba(0,0,0,.6);perspective:1400px}
+#modal[hidden]{display:none}
+.sheet{width:min(640px,100%);max-height:88svh;overflow:auto;background:var(--card);color:var(--fg);border:4px solid #111;padding:1.6rem;box-shadow:10px 10px 0 var(--pink);transform-origin:50% 0;transform:rotateX(-100deg);opacity:0;transition:transform .8s cubic-bezier(.25,.8,.3,1),opacity .3s}
+#modal.on .sheet{transform:none;opacity:1}
+.sheet h2{font:400 clamp(1.5rem,6vw,2.3rem)/1.05 'Bowlby One',Impact,sans-serif;margin:.6rem 0 1rem}
+.x{float:right;border:3px solid #111;background:var(--yellow);color:#111;font:1.1rem 'Permanent Marker',cursive;padding:.1rem .7rem}
+
+/* mural */
+#mural{--c:var(--yellow);background:var(--c)}
+.mur{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2rem}
+.mur figure{margin:0;padding:1.4rem 1.2rem 1rem;border:3px solid #111;transform:rotate(var(--r));position:relative;box-shadow:6px 6px 0 #111}
+.mur figure::before{content:"";position:absolute;left:35%;top:-14px;width:30%;height:26px;background:rgba(255,45,135,.75);transform:rotate(-4deg)}
+.mur blockquote{margin:0 0 .6rem}.mur figcaption{font:1.2rem 'Permanent Marker',cursive}
+
+/* newsletter */
+#bilhete{--c:var(--pink);background:var(--c)}
+#bilhete .h2{color:#111}
+.note{max-width:520px;margin:auto;padding:1.4rem;background:#fffdf4 repeating-linear-gradient(transparent 0 29px,#9bb6ff 29px 30px);color:#111;border:3px solid #111;transform:rotate(-1.5deg);clip-path:polygon(0 0,100% 2%,98% 100%,2% 98%);box-shadow:8px 8px 0 #111;transform-origin:center}
+.note label{display:block;font:700 1.4rem Caveat,cursive;margin-top:.6rem}
+.note input{width:100%;border:0;border-bottom:3px dashed #111;background:transparent;font:1.2rem Lora,serif;padding:.4rem 0;color:#111}
+.note .btn{margin-top:1.2rem}
+.note.fly{animation:fly 1.8s cubic-bezier(.6,0,.4,1) forwards}
+@keyframes fly{0%{transform:rotate(-1.5deg)}25%{transform:rotate(-1.5deg) scale(.7,.5)}50%{transform:rotate(10deg) scale(.35,.22)}100%{transform:translate3d(60vw,-90vh,0) rotate(720deg) scale(.05);opacity:0}}
+#ok{text-align:center;font:700 1.8rem Caveat,cursive;margin-top:1rem;color:#111;min-height:2rem}
+
+/* footer */
+footer{background:#111;color:#fff;padding:4rem 1rem 3rem;text-align:center}
+footer .sig{width:min(380px,90%);color:var(--yellow)}
+footer p{max-width:46ch;margin:1rem auto 0;font-size:.9rem}
+footer ul{list-style:none;padding:0;margin:1.5rem auto 0;max-width:46ch;font-size:.9rem;display:grid;gap:.2rem}
+footer a{color:var(--yellow)}
+.sheet p{margin:0 0 1rem}.sheet ul{padding-left:1.2rem;margin:0}.sheet a{color:inherit;text-decoration-color:var(--pink);text-decoration-thickness:3px}
+.cf{position:fixed;top:0;z-index:98;font-size:2rem;pointer-events:none}
+
+/* dark: neon */
+:root[data-theme="dark"] .hero h1{text-shadow:0 0 22px var(--pink)}
+:root[data-theme="dark"] .h2{text-shadow:0 0 16px currentColor}
+
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;transition-duration:.2s!important;transition-delay:0s!important}.tr{clip-path:none}.sg{stroke-dashoffset:0;fill:currentColor}}
+</style>
+</head>
+<body>
+<canvas id="ink" aria-hidden="true"></canvas><div id="pen" aria-hidden="true">🖊️</div>
+<div id="pencil" aria-hidden="true"><i class="lead"></i><span class="pn">✏️</span></div>
+
+<!-- 1. ABERTURA: diário 3D -->
+<div class="diary" id="diary">
+  <div class="b3d">
+    <div class="pg a"></div><div class="pg b"></div><div class="pg c"></div>
+    <button class="cover" id="openBtn" aria-label="Abrir o diário">
+      <span><svg viewBox="0 0 100 100" width="92" height="92" role="img" aria-label="Ilustração de uma escritora com um lápis"><path d="M21 44 C14 72 20 84 34 86 L66 86 C80 84 86 72 79 44Z" fill="#3a2a1f" stroke="#111" stroke-width="3"/><path d="M14 100 C14 74 30 68 50 68 C70 68 86 74 86 100Z" fill="#1f3dff" stroke="#111" stroke-width="3"/><circle cx="50" cy="42" r="24" fill="#ffd9b8" stroke="#111" stroke-width="3"/><path d="M24 42 C20 12 52 4 70 16 C80 24 78 34 76 42 C70 30 54 26 40 28 C32 30 28 34 24 42Z" fill="#3a2a1f" stroke="#111" stroke-width="3"/><circle cx="41" cy="46" r="2.6" fill="#111"/><circle cx="59" cy="46" r="2.6" fill="#111"/><path d="M42 55 Q50 62 58 55" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round"/><path d="M70 76 L92 50" stroke="#111" stroke-width="9" stroke-linecap="round"/><path d="M70 76 L92 50" stroke="#fff200" stroke-width="5" stroke-linecap="round"/></svg><small>PROPRIEDADE PRIVADA</small><b>DIÁRIO<br>SECRETO</b><em>da Thalita ✎</em></span>
+      <span class="bk"></span>
+    </button>
+  </div>
+</div>
+
+<header class="top">
+  <button class="logo" id="logo" aria-label="Logo do diário">Thalita ✎</button>
+  <nav aria-label="Principal"><a href="#sobre">sobre</a><a href="#livros">livros</a><a href="#blog">blog</a><a href="#mural">mural</a><a href="#bilhete">bilhete</a></nav>
+</header>
+
+<main>
+<section class="hero" aria-labelledby="t">
+  <div class="cut c1" data-sp="-.25" style="--r:8deg"></div>
+  <div class="cut c2" data-sp="-.5" style="--r:-14deg"></div>
+  <div class="cut c3" data-sp=".2" style="--r:-6deg"></div>
+  <div class="cut c4" data-sp="-.35" style="--r:10deg"></div>
+  <h1 id="t" aria-label="Thalita Rebouças"><span class="ln" aria-hidden="true">THALITA</span><span class="ln" aria-hidden="true">REBOUÇAS</span></h1>
+  <svg class="hw" viewBox="0 0 540 84" role="img" aria-label="o diário secreto"><text class="sg" x="4" y="62">o diário secreto…</text></svg>
+  <a class="lbl" href="#livros">Fala sério, vem folhear!</a>
+</section>
+
+<div class="mq" aria-hidden="true"><div class="trk" data-s="1.4"><span>FALA SÉRIO ✦ ler dá futuro (e dá risada) ✦ capítulo novo, drama novo ✦ livro aberto, mico garantido ✦ </span><span>FALA SÉRIO ✦ ler dá futuro (e dá risada) ✦ capítulo novo, drama novo ✦ livro aberto, mico garantido ✦ </span></div></div>
+
+<section class="sec torn" id="sobre" aria-labelledby="h-sobre">
+ <div class="wrap tr rv">
+  <h2 class="h2" id="h-sobre">Sobre a Thalita</h2>
+  <div class="agenda">
+   <p class="in">Thalita Rebouças é escritora e jornalista carioca, autora da série <mark>Fala Sério</mark>. Nasceu em 10 de novembro de 1974, segundo o e-Biografia, e soma mais de <mark>2,3 milhões</mark> de exemplares vendidos, segundo e-Biografia e Brazil Journal. Este é um tributo de fã, <mark>não oficial</mark>. Datas e números vêm das fontes listadas no rodapé e podem variar entre elas.</p>
+   <ul>
+    <li class="pit rv" style="--r:-3deg"><b>Infância</b>Aos 10 anos, já fazia os próprios livros, com folhas grampeadas e desenhos dela.</li>
+    <li class="pit rv" style="--r:2deg"><b>Ant1),color .3s .6s}
 .seen mark,mark.seen{color:#111;background-size:100% 100%}
 
 
